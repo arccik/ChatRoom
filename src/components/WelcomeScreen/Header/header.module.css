@@ -1,0 +1,24 @@
+.lettersContainer {
+  font-family: "Poppins", sans-serif;
+  width: 100%;
+  text-align: center;
+  color: #ffffff;
+  position: absolute;
+  transform: translate(-50%, -10%);
+  top: 10%;
+  left: 50%;
+  font-weight: 800;
+}
+.lettersContainer span {
+  font-size: 12vw;
+  text-shadow: -0.08em 0.03em 0.12em rgba(0, 0, 0, 0.7);
+}
+.lettersContainer span:not(:first-child) {
+  margin-left: -0.18em;
+}
+
+@media (max-width: 1024px) {
+  .lettersContainer span:not(:first-child) {
+    margin-left: -0.1em;
+  }
+}

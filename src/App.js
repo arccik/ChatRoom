@@ -1,5 +1,5 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import WelcomeScreen from "./components/WelcomeScreen";
+import WelcomeScreen from "./components/WelcomeScreen/WelcomeScreen";
 import ChatPage from "./components/ChatPage";
 import socketIO from "socket.io-client";
 
