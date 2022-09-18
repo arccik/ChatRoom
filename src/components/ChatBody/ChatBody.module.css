@@ -1,0 +1,69 @@
+.chatMainHeader {
+  width: 100%;
+  height: 10vh;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px;
+  background-color: var(--main-color);
+  color: var(--headers-font);
+}
+
+.openSideBarButton {
+  font-size: 2rem;
+  cursor: pointer;
+}
+
+.leaveChatBtn {
+  padding: 10px;
+  width: 150px;
+  border: none;
+  outline: none;
+  background-color: #d1512d;
+  cursor: pointer;
+  color: #eae3d2;
+}
+
+.messageContainer {
+  width: 100%;
+  height: 80vh;
+  background-color: #fff;
+  padding: 20px;
+  overflow-y: scroll;
+}
+
+.messageContainer > * {
+  margin-bottom: 10px;
+}
+
+.messageChats > p {
+  font-size: 13px;
+}
+.senderName {
+  text-align: right;
+}
+
+.messageSnder {
+  background-color: rgb(194, 243, 194);
+  max-width: 300px;
+  padding: 10px;
+  border-radius: 10px;
+  margin-left: auto;
+  font-size: 15px;
+}
+
+.messageRecipient {
+  background-color: #f5ccc2;
+  width: 300px;
+  padding: 10px;
+  border-radius: 10px;
+  font-size: 15px;
+}
+
+.messageStatus {
+  position: fixed;
+  bottom: 50px;
+  font-size: 13px;
+  font-style: italic;
+  color: var(--headers-font);
+}

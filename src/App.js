@@ -1,9 +1,12 @@
+import React from "react";
+
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import WelcomeScreen from "./components/WelcomeScreen/WelcomeScreen";
-import ChatPage from "./components/ChatPage";
+import ChatPage from "./components/ChatPage/ChatPage";
 import socketIO from "socket.io-client";
 
 const socket = socketIO.connect("http://localhost:2022");
+
 function App() {
   return (
     <BrowserRouter>

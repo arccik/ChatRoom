@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 
+import styles from "./ChatFooter.module.css";
+
 const ChatFooter = ({ socket }) => {
   const [message, setMessage] = useState("");
 
@@ -20,17 +22,17 @@ const ChatFooter = ({ socket }) => {
     setMessage("");
   };
   return (
-    <div className="chat__footer">
-      <form className="form" onSubmit={handleSendMessage}>
+    <div className={styles.chatFooter}>
+      <form className={styles.form} onSubmit={handleSendMessage}>
         <input
           type="text"
           placeholder="Write message"
-          className="message"
+          className={styles.message}
           value={message}
           onChange={(e) => setMessage(e.target.value)}
           onKeyDown={handleTyping}
         />
-        <button className="sendBtn">SEND</button>
+        <button className={styles.sendBtn}>SEND</button>
       </form>
     </div>
   );
