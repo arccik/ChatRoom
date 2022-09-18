@@ -6,6 +6,7 @@
   border-right: 1px solid #fdfdfd;
   transition: 0.5s;
   color: rgb(142, 142, 142);
+  box-shadow: rgba(0, 0, 0, 0.06) 0px 2px 4px 0px inset;
 }
 
 .chatHeader {
@@ -25,6 +26,7 @@
 
 .chatSideBarHidden {
   width: 0px;
+  font-size: 2px;
 }
 .chatSidebar a {
   padding: 8px 8px 8px 32px;
@@ -32,7 +34,7 @@
   font-size: 25px;
   color: #818181;
   display: block;
-  transition: 0.3s;
+  transition: font-size 0.3s;
 }
 @media screen and (max-height: 450px) {
   .chatSidebar {
@@ -42,23 +44,3 @@
     font-size: 18px;
   }
 }
-
-/* 
-
-
-
-.chatSidebar a:hover {
-  color: #f1f1f1;
-}
-
-.chatSidebar .closebtn {
-  position: absolute;
-  top: 0;
-  right: 25px;
-  font-size: 36px;
-  margin-left: 50px;
-}
-
-
-
- */

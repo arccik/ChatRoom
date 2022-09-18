@@ -1,29 +1,3 @@
-.chatMainHeader {
-  width: 100%;
-  height: 10vh;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 20px;
-  background-color: var(--main-color);
-  color: var(--headers-font);
-}
-
-.openSideBarButton {
-  font-size: 2rem;
-  cursor: pointer;
-}
-
-.leaveChatBtn {
-  padding: 10px;
-  width: 150px;
-  border: none;
-  outline: none;
-  background-color: #d1512d;
-  cursor: pointer;
-  color: #eae3d2;
-}
-
 .messageContainer {
   width: 100%;
   height: 80vh;

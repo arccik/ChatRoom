@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import ChatBar from "../ChatBar/ChatBar";
 import ChatBody from "../ChatBody/ChatBody";
 import ChatFooter from "../ChatFooter/ChatFooter";
+import ChatHeader from "../ChatHeader/ChatHeader";
 
 import styles from "./ChatPage.module.css";
 
@@ -27,6 +28,7 @@ const ChatPage = ({ socket }) => {
     <div className="chat">
       <ChatBar socket={socket} />
       <div className={styles.chatMain}>
+        <ChatHeader />
         <ChatBody
           messages={messages}
           lastMessageRef={lastMessageRef}

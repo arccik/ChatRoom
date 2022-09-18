@@ -1,6 +1,8 @@
 .chatFooter {
   padding: 10px;
-  background-color: var(--main-color);
+  /* background-color: var(--main-color); */
+  background-color: rgba(174, 176, 195, 0.37);
+  border: 1px solid rgb(195, 195, 195);
   height: 10vh;
 }
 .form {
@@ -11,17 +13,21 @@
   justify-content: space-between;
 }
 .sendBtn {
-  width: 150px;
-  background-color: green;
+  width: 20%;
+  height: 100%;
+  background-color: white;
+  border: 2px solid #4caf50;
   padding: 10px;
-  border: none;
   outline: none;
-  color: #eae3d2;
+  color: #4caf50;
   cursor: pointer;
   border-radius: 10px;
+  margin: 10px;
+  transition: 0.2s;
 }
 .sendBtn:hover {
   background-color: rgb(129, 201, 129);
+  color: white;
 }
 .message {
   width: 80%;
