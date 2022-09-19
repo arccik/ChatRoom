@@ -2,3 +2,10 @@
   height: 100vh;
   width: 100%;
 }
+
+.chat {
+  width: 100w;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+}

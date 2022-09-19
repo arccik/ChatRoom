@@ -25,7 +25,7 @@ const ChatPage = ({ socket }) => {
   }, [socket]);
 
   return (
-    <div className="chat">
+    <div className={styles.chat}>
       <ChatBar socket={socket} />
       <div className={styles.chatMain}>
         <ChatHeader />

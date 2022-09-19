@@ -20,7 +20,9 @@ const ChatBar = ({ socket }) => {
         <h4 className={styles.chatHeader}>ACTIVE USERS</h4>
         <div className={styles.chatUsers}>
           {users.map((user) => (
-            <a key={user.socketID}>{user.userName}</a>
+            <span key={user.socketID} className={styles.onlineUsers}>
+              {user.userName}
+            </span>
           ))}
         </div>
       </div>

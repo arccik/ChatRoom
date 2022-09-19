@@ -1,20 +1,19 @@
+const jwt = require("jsonwebtoken");
+
 module.exports = function (req, res, next) {
+  if (req.method === "OPTIONS") {
+    next();
+  }
   try {
-    // const authorizationHeader = req.headers.authorization;
-    const { user } = req.body;
-    if (user) {
-      if (user === "admin") {
-        next();
-      } else {
-        res.json({ message: "User Not found" });
-      }
-    } else {
-      res.json({ message: "Wrong user details" });
+    const token = req.headers.authorization.split(" ")[1];
+    if (!token) {
+      return res.status(403).json({ message: "User not authorized" });
     }
+    const decodedData = jwt.verify(token, process.env.JWT_SECRET);
+    req.user = decodedData;
+    next();
   } catch (error) {
     console.log(error);
-    return res.status(401).json({
-      message: "Authorization Faild",
-    });
+    return res.status(403).json({ message: "User not Authorized", error });
   }
 };

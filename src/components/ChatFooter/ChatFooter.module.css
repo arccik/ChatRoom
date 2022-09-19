@@ -1,7 +1,9 @@
 .chatFooter {
   padding: 10px;
   /* background-color: var(--main-color); */
-  background-color: rgba(174, 176, 195, 0.37);
+  /* background-color: rgba(174, 176, 195, 0.37); */
+  background: rgba(255, 255, 255, 0.25);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.2);
   border: 1px solid rgb(195, 195, 195);
   height: 10vh;
 }
@@ -16,7 +18,7 @@
   width: 20%;
   height: 100%;
   background-color: white;
-  border: 2px solid #4caf50;
+  border: 0.5px solid #4caf50;
   padding: 10px;
   outline: none;
   color: #4caf50;

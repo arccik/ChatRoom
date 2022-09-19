@@ -1,22 +1,36 @@
 const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
+const { validationResult } = require("express-validator");
 const User = require("../models/user-model");
+
+const generateAccessToken = (id, username) => {
+  const payload = { id, username };
+  const secret = process.env.JWT_SECRET;
+  return jwt.sign(payload, secret, { expiresIn: "24h" });
+};
 
 class AuthContoller {
   async registration(req, res, next) {
     try {
+      const errors = validationResult(req);
+      if (!errors.isEmpty()) {
+        return res.status(400).json({ message: "Error during login", errors });
+      }
       const { username, password } = req.body;
-
       const condidate = await User.findOne({ username });
       if (condidate) throw new Error("Username is taken, make a new name");
       if (username && password) {
         const hashPassword = await bcrypt.hash(password, 5);
-        const user = await User.create({
+        await User.create({
           username,
           password: hashPassword,
         });
-        res.json({ message: `User ${username} is created`, user: username });
+        return res.json({
+          message: `User ${username} is created`,
+          user: username,
+        });
       } else {
-        res.json({ message: "User or password is missing" });
+        return res.json({ message: "User or password is missing" });
       }
     } catch (error) {
       next(error);
@@ -24,20 +38,21 @@ class AuthContoller {
   }
   async login(req, res, next) {
     try {
-      const { username, password } = req.body;
-
-      if (!username || !password) {
-        throw new Error("Username or password missing");
+      const errors = validationResult(req);
+      if (!errors.isEmpty()) {
+        return res.status(400).json({ message: "Error during login", errors });
       }
+      const { username, password } = req.body;
       const user = await User.findOne({ username });
       if (!user) {
-        throw new Error("User not found");
+        return res.status(400).json({ message: "User not found" });
       } else {
-        const isPassEqual = await bcrypt.compare(password, user.password);
-        if (isPassEqual) {
-          res.json({ message: "Access Granted", user: username, status: "ok" });
+        const validatePassword = await bcrypt.compare(password, user.password);
+        if (!validatePassword) {
+          return res.status(400).json({ message: "Invalid Password" });
         } else {
-          throw new Error("User or password not matching");
+          const token = generateAccessToken(user._id, username);
+          return res.status(200).json({ token });
         }
       }
     } catch (error) {
@@ -46,7 +61,17 @@ class AuthContoller {
   }
   async getUsers(req, res, next) {
     try {
-      res.json({ getUsers: true });
+      const { user } = req;
+      const condidate = await User.findById(user.id);
+      if (!condidate) {
+        return res.status(403).json({ message: "User Not authorized" });
+      }
+      if (condidate.username === user.username) {
+        return res
+          .status(200)
+          .json({ message: "User successfuly Authorized", status: "OK" });
+      }
+      return res.status(403).json({ message: "User Not Auth" });
     } catch (error) {
       next(error);
     }

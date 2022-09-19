@@ -2,11 +2,11 @@ import React, { useState } from "react";
 import styles from "./LoginForm.module.css";
 import Input from "../../resources/Input/Input";
 import { useNavigate } from "react-router-dom";
-import makeRequest from "../../../hooks/makeRequest";
+import makeRequest, { tokenValidation } from "../../../hooks/makeRequest";
 
 const LoginForm = ({ chatSocket }) => {
   const navigate = useNavigate();
-  const [userName, setUserName] = useState("");
+  const [username, setUserName] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
 
@@ -26,19 +26,22 @@ const LoginForm = ({ chatSocket }) => {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    const { status } = await makeRequest("/login", {
-      username: userName,
+    const { token, message } = await makeRequest("/login", {
+      username: username,
       password,
     });
-    if (status === "ok") {
-      localStorage.setItem("userName", userName);
-      chatSocket.emit("newUser", {
-        userName,
-        socketID: chatSocket.id,
-      });
-      navigate("/chat");
+    if (token) {
+      const { status } = await tokenValidation(token);
+      if (status === "OK") {
+        localStorage.setItem("userName", username);
+        chatSocket.emit("newUser", {
+          username,
+          socketID: chatSocket.id,
+        });
+        navigate("/chat");
+      }
     } else {
-      setError("Given user not authorized");
+      setError(message);
     }
   };
   return (
@@ -46,7 +49,7 @@ const LoginForm = ({ chatSocket }) => {
       <div className={styles.loginForm}>
         <h3 className={styles.loginTitle}>Login</h3>
         <Input
-          value={userName}
+          value={username}
           onChange={handleUserName}
           placeholder="Username"
         />
@@ -57,14 +60,14 @@ const LoginForm = ({ chatSocket }) => {
           type="password"
         />
         <div className="formButtons">
-          <button disabled={!userName} className={styles.submitButton}>
+          <button disabled={!username} className={styles.submitButton}>
             Login
           </button>
           <button className={styles.submitButton} onClick={handleSignUpButton}>
             SIGN UP
           </button>
         </div>
-        {error && userName && password ? (
+        {error && username && password ? (
           <p style={{ color: "red" }}>{error}</p>
         ) : (
           ""

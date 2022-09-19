@@ -7,10 +7,7 @@ const Header = ({ text = "CHATROOM" }) => {
   return (
     <div className={styles.lettersContainer}>
       {textArray.map((letter, index) => (
-        <>
-          {console.log(letter + index * 2)}
-          <span keys={letter + index * 2}>{letter}</span>
-        </>
+        <span key={letter + index * 2}>{letter}</span>
       ))}
     </div>
   );
