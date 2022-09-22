@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import styles from "./LoginForm.module.css";
 import Input from "../../resources/Input/Input";
 import { useNavigate } from "react-router-dom";
-import makeRequest, { tokenValidation } from "../../../hooks/makeRequest";
+import makeRequest, { tokenValidation } from "../../../services/makeRequest";
 
 const LoginForm = ({ chatSocket }) => {
   const navigate = useNavigate();
